@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GroupLucky.Application\GroupLucky.Application.csproj" />
     <ProjectReference Include="..\GroupLucky.Infrastructure\GroupLucky.Infrastructure.csproj" />
   </ItemGroup>
 
