@@ -12,11 +12,9 @@ namespace GroupLucky.Application.Features.Categories.Queries
 
     public class GetCategoryQueryResponse
     {
-        public string? Code { get; set; }
+        public int Id { get; set; }
         public string? Name { get; set; }
-        public int StockMin { get; set; }
-        public int StockMax { get; set; }
-        public decimal UnitSalePrice { get; set; }
+        public string? Description { get; set; }
     }
 
     public static class GetCategoryQueryMapping
