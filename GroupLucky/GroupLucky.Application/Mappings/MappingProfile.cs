@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GroupLucky.Application.Features.Categories.Queries;
+using GroupLucky.Application.Features.Products.Queries;
 
 namespace GroupLucky.Application.Mappings
 {

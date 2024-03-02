@@ -25,11 +25,11 @@ namespace GroupLucky.Application.Features.Categories.Queries
         }
     }
 
-    public class GetQueryResponseHandler : IRequestHandler<GetCategoryQuery, IEnumerable<GetCategoryQueryResponse>>
+    public class GetCategoryQueryResponseHandler : IRequestHandler<GetCategoryQuery, IEnumerable<GetCategoryQueryResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public GetQueryResponseHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetCategoryQueryResponseHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;   
             _mapper = mapper;

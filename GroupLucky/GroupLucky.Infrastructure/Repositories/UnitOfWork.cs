@@ -8,6 +8,7 @@ namespace GroupLucky.Infrastructure.Repositories
         private IDbConnection _connection;
         private IDbTransaction _transaction;
         private ICategoryRepository categoryRepository;
+        private IProductRepository productRepository;
         private bool _dispose;
         public UnitOfWork(IDbConnection connection)
         {
@@ -34,6 +35,7 @@ namespace GroupLucky.Infrastructure.Repositories
             }
         }
         public ICategoryRepository CategoryRepository => categoryRepository ??= new CategoryRepository(_transaction);
+        public IProductRepository ProductRepository => productRepository ??= new ProductRepository(_transaction);   
         public void Dispose()
         {
             dispose(true);

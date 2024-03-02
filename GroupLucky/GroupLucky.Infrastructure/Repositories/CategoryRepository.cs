@@ -44,7 +44,8 @@ namespace GroupLucky.Infrastructure.Repositories
 
         public async Task<IEnumerable<Category>> GetAll()
         {
-            var categories = await Connection.QueryAsync<Category>("SELECT * FROM Category", transaction: Transaction);
+            var categories = await Connection.QueryAsync<Category>(
+                @"SELECT * FROM Categories", transaction: Transaction);
             return categories.ToList();
         }
 
