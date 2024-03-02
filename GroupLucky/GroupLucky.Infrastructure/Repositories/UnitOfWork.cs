@@ -9,7 +9,12 @@ namespace GroupLucky.Infrastructure.Repositories
         private IDbTransaction _transaction;
         private ICategoryRepository categoryRepository;
         private bool _dispose;
-
+        public UnitOfWork(IDbConnection connection)
+        {
+            _connection = connection;
+            _connection.Open();
+            _transaction = _connection.BeginTransaction();
+        }
         public void Commit()
         {
             try
