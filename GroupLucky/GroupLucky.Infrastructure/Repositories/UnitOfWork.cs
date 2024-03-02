@@ -28,7 +28,7 @@ namespace GroupLucky.Infrastructure.Repositories
                 resetRepositories();
             }
         }
-        public ICategoryRepository CategoryRepository => categoryRepository ??= new CategoryRepository(transaction: _transaction);
+        public ICategoryRepository CategoryRepository => categoryRepository ??= new CategoryRepository(_transaction);
         public void Dispose()
         {
             dispose(true);

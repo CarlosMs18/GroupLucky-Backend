@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F4D47908-6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E950C65A-49EC-4080-8665-8CED517EE5E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupLucky.WebApi", "GroupLucky.WebApi\GroupLucky.WebApi.csproj", "{0CB5C428-E6BA-4EC1-9C6F-D6AE42B1CAC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupLucky.WebApi", "GroupLucky.WebApi\GroupLucky.WebApi.csproj", "{0CB5C428-E6BA-4EC1-9C6F-D6AE42B1CAC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupLucky.Domain", "GroupLucky.Domain\GroupLucky.Domain.csproj", "{B9DF41BD-1063-432A-8E57-8D7FEC63FC54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupLucky.Domain", "GroupLucky.Domain\GroupLucky.Domain.csproj", "{B9DF41BD-1063-432A-8E57-8D7FEC63FC54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupLucky.Application", "GroupLucky.Application\GroupLucky.Application.csproj", "{39FDD5B7-5382-4073-B0E7-2BBDD62E6689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupLucky.Application", "GroupLucky.Application\GroupLucky.Application.csproj", "{39FDD5B7-5382-4073-B0E7-2BBDD62E6689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupLucky.Infrastructure", "GroupLucky.Infrastructure\GroupLucky.Infrastructure.csproj", "{24C300E2-C3FB-4A97-84B7-E1B78302BBD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupLucky.Infrastructure", "GroupLucky.Infrastructure\GroupLucky.Infrastructure.csproj", "{24C300E2-C3FB-4A97-84B7-E1B78302BBD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
