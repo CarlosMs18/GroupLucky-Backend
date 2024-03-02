@@ -21,5 +21,17 @@ namespace GroupLucky.Infrastructure.Repositories
               ON c.Id = p.CategoryId", transaction: Transaction);
             return products.ToList();   
         }
+
+        public async Task<Product> GetProduct(int id)
+        {
+            var product = await Connection.QueryFirstOrDefaultAsync<Product>(
+                @"SELECT Id, Code, Name, StockMin, StockMax, UnitSalePrice
+                FROM Products 
+                WHERE Id = @Id",
+                new {id}, 
+                transaction:Transaction);
+
+            return product;
+        }
     }
 }

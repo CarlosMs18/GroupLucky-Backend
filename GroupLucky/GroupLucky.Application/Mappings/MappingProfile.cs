@@ -5,10 +5,11 @@ using GroupLucky.Application.Features.Products.Queries;
 namespace GroupLucky.Application.Mappings
 {
     public class MappingProfile : Profile
-    {
+    {   
         public MappingProfile()
         {
             this.AddMapGetCategoryQuery();
+            this.AddMapGetProductByIdQuery();
         }
     }
 }

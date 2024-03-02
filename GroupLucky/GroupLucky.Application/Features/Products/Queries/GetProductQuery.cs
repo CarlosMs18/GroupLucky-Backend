@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using GroupLucky.Application.Contracts.Persistences;
+﻿using GroupLucky.Application.Contracts.Persistences;
 using MediatR;
 
 namespace GroupLucky.Application.Features.Products.Queries
@@ -21,12 +20,10 @@ namespace GroupLucky.Application.Features.Products.Queries
     public class GetProductQueryHandler : IRequestHandler<GetProductQuery, IEnumerable<GetProductQueryResponse>>
     {
         private readonly IUnitOfWork _unitOfWOrk;
-        private readonly IMapper _mapper;
 
-        public GetProductQueryHandler(IUnitOfWork unitOfWOrk, IMapper mapper)
+        public GetProductQueryHandler(IUnitOfWork unitOfWOrk)
         {
             _unitOfWOrk = unitOfWOrk;
-            _mapper = mapper;
         }
 
         public async Task<IEnumerable<GetProductQueryResponse>> Handle(GetProductQuery request, CancellationToken cancellationToken)

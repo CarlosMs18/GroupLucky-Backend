@@ -19,5 +19,12 @@ namespace GroupLucky.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new GetProductQuery())); 
         }
+
+        [HttpGet("[action]/{productId}")]
+        public async Task<IActionResult> GetProduct(int productId)
+        {
+            var product = await _mediator.Send(new GetProductByIdQuery { ProductId = productId});
+            return Ok(product);
+        }
     }
 }

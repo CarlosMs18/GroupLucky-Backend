@@ -6,5 +6,6 @@ namespace GroupLucky.Application.Contracts.Persistences
     public interface IProductRepository
     {
         Task<IEnumerable<GetProductQueryResponse>> GetAll();
+        Task<Product> GetProduct(int id);
     }
 }
