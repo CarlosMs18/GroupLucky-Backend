@@ -5,7 +5,7 @@ namespace GroupLucky.Application.Contracts.Persistences
     public interface ICategoryRepository
     {
         void Add(Category entity);
-        IEnumerable<Category> GetAll();
+        Task<IEnumerable<Category>> GetAll();
         void Delete(int id);
         void Delete(Product entity);
         Category Find(int id);

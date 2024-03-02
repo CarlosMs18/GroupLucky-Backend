@@ -1,4 +1,5 @@
-﻿using GroupLucky.Application.Contracts.Persistences;
+﻿using Dapper;
+using GroupLucky.Application.Contracts.Persistences;
 using GroupLucky.Domain;
 using System.Data;
 
@@ -20,6 +21,11 @@ namespace GroupLucky.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public void Delete(Category entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(Product entity)
         {
             throw new NotImplementedException();
@@ -35,14 +41,18 @@ namespace GroupLucky.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Category> GetAll()
+
+        public async Task<IEnumerable<Category>> GetAll()
         {
-            throw new NotImplementedException();
+            var categories = await Connection.QueryAsync<Category>("SELECT * FROM Category", transaction: Transaction);
+            return categories.ToList();
         }
 
         public void Update(Category entity)
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }
