@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using GroupLucky.Application.Contracts.Persistences;
-using GroupLucky.Application.Features.Products.Queries;
 using GroupLucky.Domain;
 using System.Data;
 
@@ -79,6 +78,16 @@ namespace GroupLucky.Infrastructure.Repositories
                                            entity.Id
                                        },
                                        Transaction);
+        }
+
+        public async Task Delete(int id)
+        {
+            const string sql = @"UPDATE Products 
+                                SET Active = 0
+                                WHERE Id = @Id";
+
+
+            await Connection.ExecuteAsync(sql, new {Id = id}, Transaction);
         }
     }
 }

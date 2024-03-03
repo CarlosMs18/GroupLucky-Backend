@@ -48,5 +48,11 @@ namespace GroupLucky.WebApi.Controllers
         {
             return Ok(await _mediator.Send(command));
         }
+
+        [HttpPut("[action]/{productId}")]
+        public async Task<IActionResult> DeleteProduct(int productId)
+        {
+            return Ok(await _mediator.Send(new ProductDeleteCommand { ProductId = productId}));
+        }
     }
 }

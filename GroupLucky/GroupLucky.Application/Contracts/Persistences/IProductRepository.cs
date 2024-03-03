@@ -9,5 +9,6 @@ namespace GroupLucky.Application.Contracts.Persistences
         Task<Product> GetProduct(int id);
         Task<int> Add(Product entity);
         Task Update(Product entity);
+        Task Delete(int id);
     }
 }
