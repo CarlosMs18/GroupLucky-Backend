@@ -52,6 +52,19 @@ namespace GroupLucky.Infrastructure.Repositories
             return categories.ToList();
         }
 
+        public async Task<Category> GetCategory(int id)
+        {
+            var category = await Connection.QueryFirstOrDefaultAsync<Category>(
+                @"SELECT Id, Name, Description
+                FROM Categories 
+                WHERE Id = @Id",
+                new { id },
+                transaction: Transaction);
+
+            return category!;
+        }
+    
+
         public void Update(Category entity)
         {
             throw new NotImplementedException();

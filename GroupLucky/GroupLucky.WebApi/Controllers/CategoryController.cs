@@ -37,5 +37,12 @@ namespace GroupLucky.WebApi.Controllers
                 return BadRequest(response);
             }
         }
+
+        [HttpGet("[action]/{categoryId}")]
+        public async Task<IActionResult> GetCategory(int categoryId)
+        {
+            var category = await _mediator.Send(new GetCategoryByIdQuery { CategoryId = categoryId });
+            return Ok(category);    
+        }
     }
 }
