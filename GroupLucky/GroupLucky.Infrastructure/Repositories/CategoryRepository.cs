@@ -11,9 +11,12 @@ namespace GroupLucky.Infrastructure.Repositories
         {
         }
 
-        public void Add(Category entity)
+        public async Task<int> Add(Category entity)
         {
-            throw new NotImplementedException();
+            const string sql = @"INSERT INTO Categories (Name, Description) VALUES (@Name, @Description);
+                                 SELECT CAST(SCOPE_IDENTITY() as int)";
+
+            return await Connection.ExecuteScalarAsync<int>(sql, entity, Transaction);
         }
 
         public void Delete(int id)

@@ -1,4 +1,5 @@
-﻿using GroupLucky.Application.Features.Categories.Queries;
+﻿using GroupLucky.Application.Features.Categories.Commands;
+using GroupLucky.Application.Features.Categories.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,21 @@ namespace GroupLucky.WebApi.Controllers
         public async Task<ActionResult> GetCoursesAll()
         {
             return Ok(await _mediator.Send(new GetCategoryQuery()));
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult<CategorySaveCommandResponse>> CreateCategory([FromBody] CategorySaveCommand command)
+        {
+            var response = await _mediator.Send(command);
+
+            if (response.Success)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest(response);
+            }
         }
     }
 }

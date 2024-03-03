@@ -9,7 +9,7 @@ namespace GroupLucky.Domain
         public int Quantity { get; set; }
         public decimal UnitPurcharPrice { get; set; }
         public decimal Total { get; set; }
-        public virtual Product? Product { get; set; } = null!;
-        public virtual Purcharse? Purcharse { get; set; } = null!;
+        public  Product? Product { get; set; } = null!;
+        public  Purcharse? Purcharse { get; set; } = null!;
     }
 }

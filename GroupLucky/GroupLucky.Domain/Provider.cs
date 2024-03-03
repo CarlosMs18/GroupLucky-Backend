@@ -10,6 +10,6 @@ namespace GroupLucky.Domain
         public string DocumentNumber { get; set; } = null!;
         public string? Address { get; set; }
         public string Phone { get; set; } = null!;
-        public virtual DocumentType DocumentType { get; set; } = null!;
+        public DocumentType DocumentType { get; set; }
     }
 }

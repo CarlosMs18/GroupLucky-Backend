@@ -1,4 +1,5 @@
-﻿using GroupLucky.Application.Features.Products.Queries;
+﻿using GroupLucky.Application.Features.Categories.Commands;
+using GroupLucky.Application.Features.Products.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,12 @@ namespace GroupLucky.WebApi.Controllers
         {
             var product = await _mediator.Send(new GetProductByIdQuery { ProductId = productId});
             return Ok(product);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> ProductSave([FromBody] CategorySaveCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }
