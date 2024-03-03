@@ -11,15 +11,31 @@ namespace GroupLucky.Infrastructure.Repositories
         public ProductRepository(IDbTransaction transaction) : base(transaction)
         {
         }
-        public async Task<IEnumerable<GetProductQueryResponse>> GetAll()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-             var products = await Connection.QueryAsync<GetProductQueryResponse>(
-              @"SELECT p.Id, p.Code, p.Name As ProductName, p.StockMax, p.StockMin, p.UnitSalePrice, c.Name As CategoryName, p.Active
-              FROM Products p
-              JOIN Categories c
-              ON c.Id = p.CategoryId
-              WHERE p.Active = 1", transaction: Transaction);
-            return products.ToList();   
+
+            var query = @"
+                SELECT p.Id, p.Code, p.Name, p.StockMax, p.StockMin, p.UnitSalePrice, p.Active, p.CategoryId,
+                       c.Id , c.Name 
+                FROM Products p
+                LEFT JOIN Categories c ON c.Id = p.CategoryId
+                WHERE p.Active = 1";
+
+            var products = await Connection.QueryAsync<Product, Category, Product>(
+                query,
+                (product, category) =>
+                {
+                    if (category != null)
+                    {
+                        product.CategoryId = category.Id;
+                        product.Category = category;
+                    }
+                    return product;
+                },
+                splitOn: "CategoryId",
+                transaction: Transaction);
+
+            return products;
         }
 
         public async Task<Product> GetProduct(int id)

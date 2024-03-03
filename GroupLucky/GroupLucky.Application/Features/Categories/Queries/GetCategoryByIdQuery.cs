@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GroupLucky.Application.Contracts.Persistences;
 using GroupLucky.Application.Exceptions;
-using GroupLucky.Application.Features.Products.Queries;
 using GroupLucky.Application.Mappings;
 using GroupLucky.Domain;
 using MediatR;
@@ -17,7 +16,7 @@ namespace GroupLucky.Application.Features.Categories.Queries
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public string? Category { get; set; }
+        public string? Description { get; set; }
     }
 
     public static class GetCategoryByIdQueryMapping

@@ -11,6 +11,7 @@ namespace GroupLucky.Application.Mappings
             this.AddMapGetCategoryQuery();
             this.AddMapGetProductByIdQuery();
             this.AddMapGetCategoryByIdQuery();
+            this.AddMapGetProductQuery();
  
         }
     }
