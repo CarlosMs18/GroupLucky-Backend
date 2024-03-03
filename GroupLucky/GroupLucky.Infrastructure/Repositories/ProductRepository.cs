@@ -17,7 +17,8 @@ namespace GroupLucky.Infrastructure.Repositories
               @"SELECT p.Id, p.Code, p.Name As ProductName, p.StockMax, p.StockMin, p.UnitSalePrice, c.Name As CategoryName
               FROM Products p
               JOIN Categories c
-              ON c.Id = p.CategoryId", transaction: Transaction);
+              ON c.Id = p.CategoryId
+              WHERE p.Active = 1", transaction: Transaction);
             return products.ToList();   
         }
 

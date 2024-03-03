@@ -12,6 +12,7 @@ namespace GroupLucky.Domain
         public decimal UnitSalePrice { get; set; }
         public int CategoryId { get; set; }
         public  Category Category { get; set; } 
+        public int Active { get; set; } 
         public virtual ICollection<ProductStock> ProductStocks { get; set; } = null!;
     }
 }
