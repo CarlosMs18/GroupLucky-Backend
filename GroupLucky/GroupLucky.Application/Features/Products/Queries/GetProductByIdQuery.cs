@@ -3,6 +3,7 @@ using GroupLucky.Application.Contracts.Persistences;
 using GroupLucky.Application.Exceptions;
 using GroupLucky.Application.Mappings;
 using GroupLucky.Domain;
+using GroupLucky.Domain.Enum;
 using MediatR;
 
 namespace GroupLucky.Application.Features.Products.Queries
@@ -27,7 +28,7 @@ namespace GroupLucky.Application.Features.Products.Queries
         public static void AddMapGetProductByIdQuery(this MappingProfile mappingProfile)
         {
             mappingProfile.CreateMap<Product, GetProductByIdQueryResponse>()
-                .ForMember(d => d.State, opt => opt.MapFrom(opt => opt.Active.Equals(1) ? "Activo" : "Inactivo"));
+                .ForMember(d => d.State, opt => opt.MapFrom(opt => opt.Active.Equals((int)StateTypes.Active) ? "Activo" : "Inactivo"));
         }
     }
 

@@ -41,7 +41,7 @@ namespace GroupLucky.Application.Features.Categories.Queries
         public async Task<GetCategoryByIdQueryResponse> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
             var category = await _unitOfWork.CategoryRepository.GetCategory(request.CategoryId);
-            if(category is null)
+            if(category.Id == 0)
             {
                 throw new BadRequestException("The category does not exist");
             }
