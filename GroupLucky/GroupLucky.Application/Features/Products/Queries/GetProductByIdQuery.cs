@@ -19,13 +19,15 @@ namespace GroupLucky.Application.Features.Products.Queries
         public int StockMin { get; set; }
         public int StockMax { get; set;}
         public decimal UnitSalePrice { get; set; }
+        public string? State { get; set; }
     }
 
     public static class GetProductByIdQueryMapping
     {
         public static void AddMapGetProductByIdQuery(this MappingProfile mappingProfile)
         {
-            mappingProfile.CreateMap<Product, GetProductByIdQueryResponse>();
+            mappingProfile.CreateMap<Product, GetProductByIdQueryResponse>()
+                .ForMember(d => d.State, opt => opt.MapFrom(opt => opt.Active.Equals(1) ? "Activo" : "Inactivo"));
         }
     }
 

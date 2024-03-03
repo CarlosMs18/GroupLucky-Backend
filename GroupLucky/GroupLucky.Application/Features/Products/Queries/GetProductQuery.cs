@@ -15,6 +15,7 @@ namespace GroupLucky.Application.Features.Products.Queries
         public int StockMax { get; set; }
         public decimal UnitSalePrice { get; set; }
         public string? CategoryName { get; set; }
+        public int Active { get; set; }
     }
 
     public class GetProductQueryHandler : IRequestHandler<GetProductQuery, IEnumerable<GetProductQueryResponse>>

@@ -14,7 +14,7 @@ namespace GroupLucky.Infrastructure.Repositories
         public async Task<IEnumerable<GetProductQueryResponse>> GetAll()
         {
              var products = await Connection.QueryAsync<GetProductQueryResponse>(
-              @"SELECT p.Id, p.Code, p.Name As ProductName, p.StockMax, p.StockMin, p.UnitSalePrice, c.Name As CategoryName
+              @"SELECT p.Id, p.Code, p.Name As ProductName, p.StockMax, p.StockMin, p.UnitSalePrice, c.Name As CategoryName, p.Active
               FROM Products p
               JOIN Categories c
               ON c.Id = p.CategoryId
@@ -25,9 +25,9 @@ namespace GroupLucky.Infrastructure.Repositories
         public async Task<Product> GetProduct(int id)
         {
             var product = await Connection.QueryFirstOrDefaultAsync<Product>(
-                @"SELECT Id, Code, Name, StockMin, StockMax, UnitSalePrice
+                @"SELECT Id, Code, Name, StockMin, StockMax, UnitSalePrice, Active
                 FROM Products 
-                WHERE Id = @Id",
+                WHERE Id = @Id AND Active=1",
                 new {id}, 
                 transaction:Transaction);
 
