@@ -33,6 +33,7 @@ namespace GroupLucky.Application.Features.Products.Queries
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        
 
         public GetProductByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -42,6 +43,7 @@ namespace GroupLucky.Application.Features.Products.Queries
 
         public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
+            
             var product = await _unitOfWork.ProductRepository.GetProduct(request.ProductId);
             if(product is null)
             {

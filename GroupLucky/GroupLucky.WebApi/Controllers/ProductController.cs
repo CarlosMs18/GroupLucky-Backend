@@ -43,5 +43,10 @@ namespace GroupLucky.WebApi.Controllers
                 return BadRequest(response);
             }
         }
+        [HttpPut("[action]")]
+        public async Task<IActionResult> UpdateProduct([FromBody] ProductUpdateCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
     }
 }

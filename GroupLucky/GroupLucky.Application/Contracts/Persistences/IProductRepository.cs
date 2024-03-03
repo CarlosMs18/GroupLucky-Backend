@@ -8,5 +8,6 @@ namespace GroupLucky.Application.Contracts.Persistences
         Task<IEnumerable<GetProductQueryResponse>> GetAll();
         Task<Product> GetProduct(int id);
         Task<int> Add(Product entity);
+        Task Update(Product entity);
     }
 }
