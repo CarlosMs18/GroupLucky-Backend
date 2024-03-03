@@ -18,7 +18,7 @@ namespace GroupLucky.WebApi.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult> GetCoursesAll()
+        public async Task<ActionResult> GetCategoryAll()
         {
             return Ok(await _mediator.Send(new GetCategoryQuery()));
         }

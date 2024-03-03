@@ -12,6 +12,15 @@ namespace GroupLucky.Infrastructure.Repositories
         {
         }
 
+        public async Task<int> Add(Product entity)
+        {
+            const string sql = @"INSERT INTO Products (Code,Name, StockMin,StockMax,UnitSalePrice,CategoryId) 
+                                 VALUES (@Code,@Name, @StockMin, @StockMax, @UnitSalePrice, @CategoryId);
+                                 SELECT CAST(SCOPE_IDENTITY() as int)";
+
+            return await Connection.ExecuteScalarAsync<int>(sql, entity, Transaction);
+        }
+
         public async Task<IEnumerable<GetProductQueryResponse>> GetAll()
         {
              var products = await Connection.QueryAsync<GetProductQueryResponse>(

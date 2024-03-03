@@ -36,12 +36,12 @@ namespace GroupLucky.Application.Features.Categories.Commands
                 Description = request.Description,  
             };
 
-            var id = await _unitOfWork.CategoryRepository.Add(category);
+            var categoryId = await _unitOfWork.CategoryRepository.Add(category);
              _unitOfWork.Commit();
             return new CategorySaveCommandResponse
             {
                 Success = true,
-                CategoryId = id
+                CategoryId = categoryId
             };
         }
     }
