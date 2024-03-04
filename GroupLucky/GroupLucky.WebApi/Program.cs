@@ -39,6 +39,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseCors("CorsPolicy");
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseEndpoints(endpoints =>
