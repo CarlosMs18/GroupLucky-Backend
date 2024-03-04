@@ -1,5 +1,6 @@
 ﻿using GroupLucky.Application.Features.Categories.Commands;
 using GroupLucky.Application.Features.Categories.Queries;
+using GroupLucky.Application.Features.Products.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +44,12 @@ namespace GroupLucky.WebApi.Controllers
         {
             var category = await _mediator.Send(new GetCategoryByIdQuery { CategoryId = categoryId });
             return Ok(category);    
+        }
+
+        [HttpPut("[action]")]
+        public async Task<IActionResult> UpdateCategory([FromBody] CategoryUpdateCommand command)
+        {
+            return Ok(await _mediator.Send(command));
         }
     }
 }

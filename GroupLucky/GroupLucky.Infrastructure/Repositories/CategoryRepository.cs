@@ -19,31 +19,7 @@ namespace GroupLucky.Infrastructure.Repositories
             return await Connection.ExecuteScalarAsync<int>(sql, entity, Transaction);
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Category entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Product entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Category Find(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Category FindByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
+     
 
         public async Task<IEnumerable<Category>> GetAll()
         {
@@ -63,13 +39,20 @@ namespace GroupLucky.Infrastructure.Repositories
 
             return category!;
         }
-    
 
-        public void Update(Category entity)
+        public async Task Update(Category entity)
         {
-            throw new NotImplementedException();
+            await Connection.ExecuteAsync(@"UPDATE Categories SET 
+                                          Name = @Name, 
+                                          Description = @Description
+                                          WHERE Id = @Id",
+                                          new
+                                          {
+                                              entity.Name,
+                                              entity.Description,
+                                              entity.Id
+                                          },
+                                          transaction: Transaction);
         }
-
-      
     }
 }
