@@ -12,16 +12,8 @@ namespace GroupLucky.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Product>> GetAll()
         {
-
-            var query = @"
-                SELECT p.Id, p.Code, p.Name, p.StockMax, p.StockMin, p.UnitSalePrice, p.Active, p.CategoryId,
-                       c.Id , c.Name 
-                FROM Products p
-                LEFT JOIN Categories c ON c.Id = p.CategoryId
-                WHERE p.Active = 1";
-
             var products = await Connection.QueryAsync<Product, Category, Product>(
-                query,
+                "Get_All_Products",
                 (product, category) =>
                 {
                     if (category != null)
@@ -32,10 +24,12 @@ namespace GroupLucky.Infrastructure.Repositories
                     return product;
                 },
                 splitOn: "CategoryId",
+                commandType: CommandType.StoredProcedure,
                 transaction: Transaction);
 
             return products;
         }
+
 
         public async Task<Product> GetProduct(int id)
         {
@@ -50,44 +44,60 @@ namespace GroupLucky.Infrastructure.Repositories
         }
         public async Task<int> Add(Product entity)
         {
-            const string sql = @"INSERT INTO Products (Code,Name, StockMin,StockMax,UnitSalePrice,CategoryId, Active) 
-                                 VALUES (@Code,@Name, @StockMin, @StockMax, @UnitSalePrice, @CategoryId, @Active);
-                                 SELECT CAST(SCOPE_IDENTITY() as int)";
+            var parameters = new
+            {
+                entity.Code,
+                entity.Name,
+                entity.StockMin,
+                entity.StockMax,
+                entity.UnitSalePrice,
+                entity.CategoryId,
+                entity.Active
+            };
 
-            return await Connection.ExecuteScalarAsync<int>(sql, entity, Transaction);
+            const string storedProcedureName = "Add_Product";
+
+            return await Connection.ExecuteScalarAsync<int>(
+                storedProcedureName,
+                parameters,
+                commandType: CommandType.StoredProcedure,
+                transaction: Transaction);
         }
+
 
         public async Task Update(Product entity)
         {
-            await Connection.ExecuteAsync(@"UPDATE Products SET
-                              Code = @Code,
-                              Name = @Name,
-                              StockMin = @StockMin,
-                              StockMax = @StockMax,
-                              UnitSalePrice = @UnitSalePrice,
-                              CategoryId = @CategoryId
-                              WHERE Id = @Id",
-                                       new
-                                       {
-                                           entity.Code,
-                                           entity.Name,
-                                           entity.StockMin,
-                                           entity.StockMax,
-                                           entity.UnitSalePrice,
-                                           entity.CategoryId,
-                                           entity.Id
-                                       },
-                                       Transaction);
+            var parameters = new
+            {
+                entity.Id,
+                entity.Code,
+                entity.Name,
+                entity.StockMin,
+                entity.StockMax,
+                entity.UnitSalePrice,
+                entity.CategoryId
+            };
+
+            const string storedProcedureName = "Update_Product";
+
+            await Connection.ExecuteAsync(
+                storedProcedureName,
+                parameters,
+                commandType: CommandType.StoredProcedure,
+                transaction: Transaction);
         }
+
 
         public async Task Delete(int id)
         {
-            const string sql = @"UPDATE Products 
-                                SET Active = 0
-                                WHERE Id = @Id";
+            const string storedProcedureName = "Delete_Product";
 
-
-            await Connection.ExecuteAsync(sql, new {Id = id}, Transaction);
+            await Connection.ExecuteAsync(
+                storedProcedureName,
+                new { Id = id },
+                commandType: CommandType.StoredProcedure,
+                transaction: Transaction);
         }
+
     }
 }
