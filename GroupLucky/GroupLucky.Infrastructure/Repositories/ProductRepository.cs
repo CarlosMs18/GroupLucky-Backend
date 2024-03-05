@@ -12,8 +12,16 @@ namespace GroupLucky.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Product>> GetAll()
         {
+
+            var query = @"
+                SELECT p.Id, p.Code, p.Name, p.StockMax, p.StockMin, p.UnitSalePrice, p.Active, p.CategoryId,
+                       c.Id , c.Name 
+                FROM Products p
+                LEFT JOIN Categories c ON c.Id = p.CategoryId
+                WHERE p.Active = 1";
+
             var products = await Connection.QueryAsync<Product, Category, Product>(
-                "Get_All_Products",
+                query,
                 (product, category) =>
                 {
                     if (category != null)
@@ -24,11 +32,11 @@ namespace GroupLucky.Infrastructure.Repositories
                     return product;
                 },
                 splitOn: "CategoryId",
-                commandType: CommandType.StoredProcedure,
                 transaction: Transaction);
 
             return products;
         }
+
 
 
         public async Task<Product> GetProduct(int id)
