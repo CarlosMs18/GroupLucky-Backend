@@ -14,10 +14,12 @@ namespace GroupLucky.Application.Features.Products.Queries
     public class GetProductQueryResponse
     {
         public int Id { get; set; }
+        public string? Code { get; set; }
         public string? ProductName { get; set; }
         public int StockMin { get; set; }
         public int StockMax { get; set; }
         public decimal UnitSalePrice { get; set; }
+        public int CategoryId { get; set; }
         public string? CategoryName { get; set; }
         public string State { get; set; }
     }

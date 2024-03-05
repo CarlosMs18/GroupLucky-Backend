@@ -44,7 +44,7 @@ namespace GroupLucky.Application.Features.Products.Commands
                 var category = await _unitOfWork.CategoryRepository.GetCategory(request.CategoryId);
                 if(category.Id == 0)
                 {
-                    throw new BadRequestException("Noe xiste!");
+                    throw new BadRequestException("No existe!");
                 }
                 var product = new Product
                 {
